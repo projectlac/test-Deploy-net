@@ -1,0 +1,634 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "MyWebFont";
+  src: 
+  // url("../Uni.woff") format("woff"),
+    url("../UTM ThuPhap Thien An.ttf") format("truetype");
+}
+
+.v-sheet.v-app-bar.v-toolbar:not(.v-sheet--outlined) {
+  display: none;
+}
+:focus-visible {
+  outline: none !important;
+}
+body {
+  overflow: hidden;
+}
+::-webkit-scrollbar {
+  display: none !important;
+}
+.v-application {
+  font-family: "Montserrat", sans-serif !important;
+}
+.allContent {
+  margin-top: 75px !important;
+  position: relative;
+}
+#countDown {
+  font-size: 125px;
+
+  font-family: "MyWebFont";
+  color: #fdf6e2;
+  text-shadow: 0px 0px 3px #e0d1a9;
+}
+.mainContent {
+  width: 50%;
+  border: 2px solid #e0d1a9;
+  z-index: 2;
+  padding: 4px;
+  opacity: 1;
+  transition: all 0.5 linear;
+  background: url("../bg_b2de610.jpg");
+  background-size: cover;
+}
+.mainContent.doneBanpick,
+.lock.doneBanpick {
+  opacity: 0;
+}
+
+.Blue {
+  width: 25%;
+  .banBlue,
+  .pickBlue {
+    width: 50%;
+    padding-top: 10%;
+    padding-left: 12%;
+  }
+  .borderPickBlue {
+    width: 135px;
+    height: 135px;
+    // margin-left: 4px;
+    margin-bottom: 22px;
+    // border: 3px solid blue;
+  }
+}
+.Red {
+  width: 25%;
+  .banRed,
+  .pickRed {
+    width: 50%;
+    padding-top: 46px;
+    padding-left: -20px;
+  }
+  .borderPickRed {
+    width: 135px;
+    height: 135px;
+    margin-left: 15%;
+    margin-bottom: 22px;
+    // border: 3px solid red;
+  }
+}
+.wrapper {
+  height: 700px;
+  overflow-x: hidden;
+  margin-top: 16px;
+  overflow-y: auto;
+  .card {
+    padding: 4px;
+    .border {
+      border: 3px solid #e0d1a9;
+      width: 135px;
+      height: 135px;
+      transition: all 0.3s linear;
+      // padding: 4px;
+
+      position: relative;
+      img {
+        width: 100%;
+        transition: all 0.1s linear;
+      }
+    }
+    p {
+      font-size: 12px;
+      font-weight: 600;
+      min-height: 37px;
+      text-align: center;
+      margin: 0 !important;
+      margin-top: 3px !important;
+    }
+    .hadChoose {
+      cursor: not-allowed;
+      pointer-events: none;
+      &::before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #080606b3;
+        content: "Cấm";
+        top: 0;
+        left: 0;
+        display: flex;
+        font-family: "MyWebFont";
+        color: #fdf6e2;
+        text-shadow: 0px 0px 3px #e0d1a9;
+        font-size: 40px;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .blueChoose {
+      cursor: not-allowed;
+      pointer-events: none;
+      &::before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #2e45c4d2;
+        content: "Đã chọn";
+        display: flex;
+        top: 0;
+        font-family: "MyWebFont";
+        color: #fdf6e2;
+        text-shadow: 0px 0px 3px #e0d1a9;
+        font-size: 30px;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .redChoose {
+      cursor: not-allowed;
+      pointer-events: none;
+      &::before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #fd6464d2;
+        content: "Đã chọn";
+        display: flex;
+        top: 0;
+        font-family: "MyWebFont";
+        color: #fdf6e2;
+        text-shadow: 0px 0px 3px #e0d1a9;
+        font-size: 30px;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.borderBan {
+  width: 135px;
+  height: 135px;
+  margin-bottom: 22px;
+  // border: 3px black solid;
+}
+.Red .borderBan {
+  margin-left: 15%;
+}
+.Onmyoji {
+  height: 100%;
+  position: relative;
+  .OnmyojiRow {
+    height: 100%;
+    .OnmyojiCard {
+      height: 100%;
+      .borderOnmyoji {
+        border: 2px solid #e0d1a9;
+        height: 100%;
+        position: relative;
+        img {
+          object-position: center;
+          width: 100%;
+          object-fit: none;
+
+          position: relative;
+          height: 100%;
+        }
+        p {
+          position: absolute;
+          bottom: 63px;
+          left: 0;
+          right: 0;
+
+          margin: 0 auto;
+          width: 100%;
+          text-shadow: 0 0 6px;
+          text-align: center;
+          font-family: "MyWebFont";
+          font-size: 40px;
+          color: #db5757;
+        }
+      }
+    }
+  }
+}
+.OmyBlue img,
+.OmyRed img {
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  object-position: top;
+}
+.OmyBlue {
+  z-index: 2;
+  width: 392px;
+  height: 428px;
+  position: absolute;
+  bottom: 0;
+  left: -52px;
+}
+.OmyRed {
+  z-index: 2;
+  width: 392px;
+  height: 428px;
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+}
+.Match {
+  margin: 0 auto;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  transform: translateY(250px);
+  transition: all 0.5s linear;
+}
+.Match.doneBanpick {
+  transform: translateY(0);
+}
+.table {
+  width: 500px;
+  margin: 0 auto;
+}
+.HeaderBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // transform: translateY(-60px);
+  transition: all 0.5s linear;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+  height: 50px;
+  background: #333;
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+
+  .scoreBlue,
+  .scoreRed {
+    width: 15%;
+    padding-top: 10px;
+  }
+  .nameBlue,
+  .nameRed {
+    width: 25%;
+    padding-top: 10px;
+  }
+  .matchNumber {
+    width: 20%;
+    padding-top: 10px;
+    height: 50px;
+    background: #ffdf00;
+    color: #fff;
+  }
+}
+
+// .HeaderBar.doneBanpick {
+//   transform: translateY(0);
+// }
+.pick {
+  background: #522828e3;
+  img {
+    border-radius: 50%;
+    border: 3px solid #e0d1a9;
+    background: #856434b5;
+  }
+}
+.pickOnmy {
+  border-color: #fff;
+}
+.lock {
+  background: url("../bg_b2de610.jpg");
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 175px;
+  bottom: 50px;
+  font-family: "MyWebFont";
+  height: 52px;
+  border-radius: 4px;
+  background-position: center bottom;
+  border: 3px solid #e0d1a9;
+  font-size: 29px;
+}
+.v-main__wrap {
+  background: url("https://images.hdqwalls.com/wallpapers/shiranui-onmyoji-arena-aw.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.khung-bg {
+  width: 100%;
+  height: 100%;
+  background: url("../khung ban pick.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: -87px;
+  left: 0;
+}
+.fly {
+  background: url("../8dd162dc6acb3443f5e12f231ab24dd4c7365d342346-n0pqq6_fw658.png");
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 8%;
+  z-index: 3;
+  left: 24%;
+  background-size: cover;
+}
+.fly2 {
+  background: url("../3030.png");
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 31%;
+  right: 24%;
+  z-index: 3;
+  background-size: cover;
+}
+.fly3 {
+  background: url("../3031.png");
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 5%;
+  /* transform: rotateZ(
+98deg); */
+  left: 58%;
+  z-index: 3;
+  background-size: cover;
+}
+.theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state):not(.v-input--is-disabled)
+  > .v-input__control
+  > .v-input__slot:hover
+  fieldset {
+  border-color: #e0d1a9;
+}
+.theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state):not(.v-input--is-disabled)
+  > .v-input__control
+  > .v-input__slot:active
+  fieldset {
+  border-color: #e0d1a9;
+}
+
+// .theme--light.v-input:hover {
+//   border-color: #e0d1a9;
+// }
+
+.OnmyojiCard:first-child .borderOnmyoji p {
+  color: #6296b2 !important;
+}
+// .OnmyojiCard:nth-child(2) .borderOnmyoji p {
+//   color: #6296b2 !important;
+// }
+.OnmyojiCard:nth-child(4) .borderOnmyoji p {
+  color: #818181 !important;
+}
+.OnmyojiCard:nth-child(3) .borderOnmyoji p {
+  color: #ddb934 !important;
+}
+
+.OnmyojiCard:first-child .borderOnmyoji {
+  position: relative;
+  &:before {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    content: "";
+    background-image: url("../onmyoji.png");
+    z-index: 0;
+    margin: 0 auto;
+    background-position: 40% 2%;
+    opacity: 0;
+    transition: all 0.5s linear;
+  }
+}
+
+.OnmyojiCard:first-child .borderOnmyoji:hover:before {
+  opacity: 1;
+}
+
+.OnmyojiCard:nth-child(2) .borderOnmyoji {
+  position: relative;
+  &:before {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    content: "";
+    background-image: url("../G2skin1.png");
+    z-index: 0;
+    margin: 0 auto;
+    background-position: 67% 2%;
+    opacity: 0;
+    transition: all 0.5s linear;
+  }
+}
+
+.OnmyojiCard:nth-child(2) .borderOnmyoji:hover:before {
+  opacity: 1;
+}
+
+.OnmyojiCard:nth-child(3) .borderOnmyoji {
+  position: relative;
+  &:before {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    content: "";
+    background-image: url("../G3skin1.png");
+    z-index: 0;
+    margin: 0 auto;
+    background-position: 40% -142%;
+    opacity: 0;
+    transition: all 0.5s linear;
+  }
+}
+
+.OnmyojiCard:nth-child(3) .borderOnmyoji:hover:before {
+  opacity: 1;
+}
+
+.OnmyojiCard:nth-child(4) .borderOnmyoji {
+  position: relative;
+  &:before {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    content: "";
+    background-image: url("../G4skin1.png");
+    z-index: 0;
+    margin: 0 auto;
+    background-position: 40% 2%;
+    opacity: 0;
+    transition: all 0.5s linear;
+  }
+}
+
+.OnmyojiCard.pickOnmy:first-child .borderOnmyoji {
+  border: 2px solid #6296b2 !important;
+}
+.OnmyojiCard.pickOnmy:nth-child(2) .borderOnmyoji {
+  border: 2px solid #db5757 !important;
+}
+.OnmyojiCard.pickOnmy:nth-child(3) .borderOnmyoji {
+  border: 2px solid #ddb934 !important;
+}
+.OnmyojiCard.pickOnmy:nth-child(4) .borderOnmyoji {
+  border: 2px solid#818181 !important;
+}
+.OnmyojiCard.pickOnmy .borderOnmyoji:before {
+  opacity: 1;
+}
+
+.OnmyojiCard:nth-child(4) .borderOnmyoji:hover:before {
+  opacity: 1;
+}
+
+.v-text-field.v-text-field--solo .v-input__append-inner {
+  z-index: 2 !important;
+}
+
+@media (min-width: 1264px) {
+  .allContent {
+    position: relative;
+  }
+  .khung-bg {
+    background-size: contain;
+  }
+  .wrapper .card .border {
+    width: 85px;
+    height: 85px;
+  }
+  .wrapper .card .hadChoose::before {
+    font-size: 28px;
+  }
+  .wrapper .card .blueChoose::before,
+  .wrapper .card .redChoose::before {
+    font-size: 18px;
+  }
+  .borderBan {
+    width: 85px;
+    height: 85px;
+    margin-bottom: 22px;
+    img {
+      width: 100%;
+    }
+  }
+  .Blue .banBlue,
+  .Blue .pickBlue {
+    width: 50%;
+    padding-top: 54%;
+    padding-left: 13%;
+  }
+  .Blue .borderPickBlue {
+    width: 85px;
+    height: 85px;
+    margin-bottom: 22px;
+  }
+  .Blue .borderPickBlue img {
+    width: 100%;
+  }
+
+  .Red .banRed,
+  .Red .pickRed {
+    width: 50%;
+    padding-top: 57%;
+    padding-left: 2%;
+  }
+  .Red .borderPickRed {
+    width: 85px;
+    height: 85px;
+    margin-bottom: 22px;
+  }
+  .Red .borderPickRed img {
+    width: 100%;
+  }
+  .Red .borderBan {
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 1904px) {
+  .allContent {
+    position: initial;
+  }
+  // .khung-bg {
+  //   background-size: cover;
+  // }
+  .wrapper .card .border {
+    width: 135px;
+    height: 135px;
+  }
+  .wrapper .card .hadChoose::before {
+    font-size: 28px;
+  }
+  .wrapper .card .blueChoose::before,
+  .wrapper .card .redChoose::before {
+    font-size: 18px;
+  }
+  .borderBan {
+    width: 135px;
+    height: 135px;
+    margin-bottom: 22px;
+    img {
+      width: 100%;
+    }
+  }
+  .Blue .banBlue,
+  .Blue .pickBlue {
+    width: 50%;
+    padding-top: 3.5%;
+    padding-left: 9%;
+  }
+  .Blue .borderPickBlue {
+    width: 135px;
+    height: 135px;
+    margin-bottom: 22px;
+  }
+  .Blue .borderPickBlue img {
+    width: 100%;
+  }
+
+  .Red .banRed,
+  .Red .pickRed {
+    width: 50%;
+
+    padding-top: 3%;
+    padding-left: 3%;
+  }
+  .Red .borderPickRed {
+    width: 135px;
+    height: 135px;
+    margin-bottom: 22px;
+  }
+  .Red .borderPickRed img {
+    width: 100%;
+  }
+  .Red .borderBan {
+    margin-bottom: 22px;
+  }
+  .wrapper .card .hadChoose::before {
+    font-size: 48px;
+  }
+  .wrapper .card .blueChoose::before,
+  .wrapper .card .redChoose::before {
+    font-size: 30px;
+  }
+}
