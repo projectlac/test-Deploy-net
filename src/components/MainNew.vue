@@ -4,17 +4,16 @@
     <v-row>
       <Blue :banBlue="banBlue" :pickBlue="pickBlue" :blueOnmy="blueOnmy" />
       <Effect />
+      <v-overlay :value="overlay">
+        <p id="countDown">
+          <span>
+            <p>
+              {{ textManager }}
+            </p>
+          </span>
+        </p>
+      </v-overlay>
       <div class="mainContent" :class="{ doneBanpick: countClick == 16 }">
-        <v-overlay :value="overlay">
-          <p id="countDown">
-            <span>
-              <p>
-                {{ textManager }}
-              </p>
-            </span>
-          </p>
-        </v-overlay>
-
         <div class="choose-shiki" v-if="countClick < 14">
           <v-row class="justify-center mt-4">
             <v-col cols="6">
@@ -68,7 +67,7 @@
                   class="border"
                   :class="{
                     hadChoose: post.disable,
-                    blueChoose: post.bluePick,
+
                     pick: post.pickAction,
                   }"
                   @click="pick(post.id)"
@@ -94,7 +93,7 @@
                   class="border"
                   :class="{
                     hadChoose: post.disable,
-                    redChoose: post.redPick,
+
                     pick: post.pickAction,
                   }"
                   @click="pick(post.id)"

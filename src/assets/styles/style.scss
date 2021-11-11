@@ -319,8 +319,11 @@ body {
   border: 3px solid #e0d1a9;
   font-size: 29px;
 }
+.v-main {
+  background: #094161;
+}
 .v-main__wrap {
-  background: url("https://images.hdqwalls.com/wallpapers/shiranui-onmyoji-arena-aw.jpg");
+  background: url("../bottom_bg_b30cb11.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -367,6 +370,17 @@ body {
   left: 58%;
   z-index: 3;
   background-size: cover;
+}
+.redBG {
+  background: url("../fun_bg_99effa1.jpg");
+  width: 273px;
+  height: 100%;
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: 0 auto;
 }
 .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state):not(.v-input--is-disabled)
   > .v-input__control

@@ -4,6 +4,7 @@
     <div class="fly"></div>
     <div class="fly2"></div>
     <div class="fly3"></div>
+    <div class="redBG"></div>
   </div>
 </template>
 
