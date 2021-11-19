@@ -4,6 +4,7 @@
       <div class="pickRed">
         <div>
           <div class="borderPickRed" v-for="(p, index) in pickRed" :key="index">
+            <div class="borderPickImg"></div>
             <img :src="'./img/' + p.img" alt="" />
           </div>
         </div>
@@ -11,6 +12,7 @@
       <div class="banRed">
         <div>
           <div class="borderBan" v-for="(b, index) in banRed" :key="index">
+            <div class="borderBanImg"></div>
             <img :src="'./img/' + b.img" alt="" />
           </div>
         </div>

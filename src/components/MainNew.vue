@@ -39,7 +39,7 @@
                 cols="2"
                 class="card px-2"
                 v-for="post in filteredBanList"
-                :key="post.id"
+                :key="'./img/' + post.id"
               >
                 <div
                   class="border"
@@ -61,7 +61,7 @@
                 cols="2"
                 class="card px-2"
                 v-for="post in filteredBanList"
-                :key="post.id"
+                :key="'./img/' + post.id"
               >
                 <div
                   class="border"
@@ -87,7 +87,7 @@
                 cols="2"
                 class="card px-2"
                 v-for="post in filteredBanList"
-                :key="post.id"
+                :key="'./img/' + post.id"
               >
                 <div
                   class="border"
@@ -108,13 +108,15 @@
 
         <ChooseOmyoji v-else @chooseOnmy="chooseOnmy" :data="onmyoji" />
       </div>
-      <button
-        class="lock"
-        :class="{ doneBanpick: countClick == 16 }"
-        @click="lock()"
-      >
-        {{ lockText }}
-      </button>
+      <div class="lol">
+        <button
+          class="lock"
+          :class="{ doneBanpick: countClick == 16 }"
+          @click="lock()"
+        >
+          {{ lockText }}
+        </button>
+      </div>
       <Red :banRed="banRed" :pickRed="pickRed" :redOnmy="redOnmy" />
     </v-row>
   </v-container>
@@ -128,6 +130,7 @@ import Effect from "@/components/Effect.vue";
 
 import ChooseOmyoji from "@/components/ChooseOmyoji.vue";
 import { SSR } from "@/store/data";
+// import axios from "axios";
 type Data = {
   name: string;
   image: string;
@@ -180,7 +183,10 @@ export default class Main extends Vue {
     { id: 2, name: "Hiromasa", pickAction: false, img: "O3skin1.png" },
     { id: 3, name: "Yao bikuni", pickAction: false, img: "O4skin1.png" },
   ];
-
+  //////////////////////////////////////////////// THử nghiệm
+  ban1: any = {};
+  ban2: any = {};
+  ////////////////////////////////////////////////// Kết thúc thử ngiệm
   pick(val: number) {
     this.banList.map((b) => {
       b.pickAction = false;
@@ -277,5 +283,40 @@ export default class Main extends Vue {
       return post.name.toLowerCase().includes(this.keyword.toLowerCase());
     });
   }
+  // async getData() {
+  //   const res = await axios.post(
+  //     "https://steady-flea-20.hasura.app/v1/graphql",
+  //     JSON.stringify({
+  //       query: `
+  //           query MyQuery {
+  //           shikigami(order_by: {name: asc}) {
+  //             bluePick
+  //             disable
+  //             id
+  //             img
+  //             name
+  //             pickAction
+  //             prioritized
+  //             rank
+  //             redPick
+  //           }
+  //         }
+
+  //         `,
+  //     }),
+  //     {
+  //       headers: {
+  //         "content-type": "application/json",
+  //         "x-hasura-admin-secret":
+  //           "02HINqqOLfSeljv1K8C6XB1qo2QpqdXG4pii6Mm8Il7PmKZjzb38XeEQ5x8ZatfO",
+  //       },
+  //     }
+  //   );
+  //   // console.log(res.data.data.shikigami);
+  //   this.banList = res.data.data.shikigami;
+  // }
+  // created() {
+  //   this.getData();
+  // }
 }
 </script>

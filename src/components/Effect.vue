@@ -1,6 +1,6 @@
 <template>
   <div class="Effect">
-    <div class="khung-bg"></div>
+    <!-- <div class="khung-bg"></div> -->
     <div class="fly"></div>
     <div class="fly2"></div>
     <div class="fly3"></div>

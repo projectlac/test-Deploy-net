@@ -179,6 +179,9 @@ body {
 .Red .borderBan {
   margin-left: 15%;
 }
+
+//
+
 .Onmyoji {
   height: 100%;
   position: relative;
@@ -227,7 +230,7 @@ body {
   z-index: 2;
   width: 392px;
   height: 428px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: -52px;
 }
@@ -235,7 +238,7 @@ body {
   z-index: 2;
   width: 392px;
   height: 428px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: -15px;
 }
@@ -304,21 +307,31 @@ body {
 .pickOnmy {
   border-color: #fff;
 }
-.lock {
-  background: url("../bg_b2de610.jpg");
-  position: absolute;
+.lol {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
   left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 175px;
-  bottom: 50px;
-  font-family: "MyWebFont";
-  height: 52px;
-  border-radius: 4px;
-  background-position: center bottom;
-  border: 3px solid #e0d1a9;
-  font-size: 29px;
+  z-index: 0;
+  .lock {
+    background: url("../bg_b2de610.jpg");
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 175px;
+    bottom: 50px;
+    font-family: "MyWebFont";
+    height: 52px;
+    border-radius: 4px;
+    background-position: center bottom;
+    border: 3px solid #e0d1a9;
+    font-size: 29px;
+    z-index: 99999;
+  }
 }
+
 .v-main {
   background: #094161;
 }
@@ -328,17 +341,17 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
-.khung-bg {
-  width: 100%;
-  height: 100%;
-  background: url("../khung ban pick.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: absolute;
-  top: -87px;
-  left: 0;
-}
+// .khung-bg {
+//   width: 100%;
+//   height: 100%;
+//   background: url("../khung ban pick.png");
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   position: absolute;
+//   top: -87px;
+//   left: 0;
+// }
 .fly {
   background: url("../8dd162dc6acb3443f5e12f231ab24dd4c7365d342346-n0pqq6_fw658.png");
   position: absolute;
@@ -367,7 +380,7 @@ body {
   top: 5%;
   /* transform: rotateZ(
 98deg); */
-  left: 58%;
+  left: 52%;
   z-index: 3;
   background-size: cover;
 }
@@ -542,6 +555,7 @@ body {
     width: 85px;
     height: 85px;
     margin-bottom: 22px;
+
     img {
       width: 100%;
     }
@@ -549,7 +563,7 @@ body {
   .Blue .banBlue,
   .Blue .pickBlue {
     width: 50%;
-    padding-top: 54%;
+    padding-top: 18%;
     padding-left: 13%;
   }
   .Blue .borderPickBlue {
@@ -564,7 +578,7 @@ body {
   .Red .banRed,
   .Red .pickRed {
     width: 50%;
-    padding-top: 57%;
+    padding-top: 18%;
     padding-left: 2%;
   }
   .Red .borderPickRed {
@@ -577,6 +591,96 @@ body {
   }
   .Red .borderBan {
     margin-bottom: 20px;
+  }
+  .Blue {
+    .borderBan {
+      width: 85px;
+      height: 85px;
+      margin-bottom: 22px;
+      position: relative;
+      .borderBanImg {
+        background: url("../khung ban xanh.png");
+        width: 155px;
+        height: 155px;
+        background-size: cover;
+        position: absolute;
+        top: -33px;
+        left: -36px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .borderPickBlue {
+      width: 85px;
+      height: 85px;
+      margin-bottom: 22px;
+      position: relative;
+      .borderPickImg {
+        background: url("../khung pick xanh.png");
+        width: 155px;
+        height: 155px;
+        background-size: cover;
+        position: absolute;
+        top: -33px;
+        left: -36px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .Red {
+    .borderBan {
+      width: 85px;
+      height: 85px;
+      margin-bottom: 22px;
+      position: relative;
+      .borderBanImg {
+        background: url("../khung ban do.png");
+        width: 155px;
+        height: 155px;
+        background-size: cover;
+        position: absolute;
+        top: -33px;
+        left: -36px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .borderPickRed {
+      width: 85px;
+      height: 85px;
+      margin-bottom: 22px;
+      position: relative;
+      .borderPickImg {
+        background: url("../khung pick do.png");
+        width: 155px;
+        height: 155px;
+        background-size: cover;
+        position: absolute;
+        top: -33px;
+        left: -36px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .wrapper {
+    height: 500px;
+  }
+  .fly {
+    top: 4%;
+  }
+  .fly2 {
+    right: 18%;
+  }
+  .fly3 {
+    top: -10%;
+    left: 52%;
   }
 }
 @media (min-width: 1904px) {
@@ -644,5 +748,82 @@ body {
   .wrapper .card .blueChoose::before,
   .wrapper .card .redChoose::before {
     font-size: 30px;
+  }
+  .Blue {
+    .borderBan {
+      width: 135px;
+      height: 135px;
+      margin-bottom: 22px;
+      position: relative;
+      .borderBanImg {
+        background: url("../khung ban xanh.png");
+        width: 250px;
+        height: 250px;
+        background-size: cover;
+        position: absolute;
+        top: -60px;
+        left: -62px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .borderPickBlue {
+      width: 135px;
+      height: 135px;
+      margin-bottom: 22px;
+      position: relative;
+      .borderPickImg {
+        background: url("../khung pick xanh.png");
+        width: 250px;
+        height: 250px;
+        background-size: cover;
+        position: absolute;
+        top: -60px;
+        left: -62px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .Red {
+    .borderBan {
+      width: 135px;
+      height: 135px;
+      margin-bottom: 22px;
+      position: relative;
+      .borderBanImg {
+        background: url("../khung ban do.png");
+        width: 250px;
+        height: 250px;
+        background-size: cover;
+        position: absolute;
+        top: -60px;
+        left: -62px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .borderPickRed {
+      width: 135px;
+      height: 135px;
+      margin-bottom: 22px;
+      position: relative;
+      .borderPickImg {
+        background: url("../khung pick do.png");
+        width: 250px;
+        height: 250px;
+        background-size: cover;
+        position: absolute;
+        top: -60px;
+        left: -62px;
+      }
+      img {
+        width: 100%;
+      }
+    }
   }
 }

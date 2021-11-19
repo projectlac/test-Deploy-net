@@ -150,6 +150,9 @@ export default class Main extends Vue {
       return post.name.toLowerCase().includes(this.keyword.toLowerCase());
     });
   }
+  created() {
+    console.log("fdafafa");
+  }
 
   @Watch("keyword")
   wKey() {
