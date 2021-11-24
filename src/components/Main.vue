@@ -132,7 +132,7 @@ export default class Main extends Vue {
   banList = SSR;
   icon: string = "";
   countClick: number = 0;
-  banBlue: Array<object> = [];
+  banBlue: Array<object> = [{}, {}];
   banRed: Array<object> = [];
   pickBlue: Array<object> = [];
   pickRed: Array<object> = [];

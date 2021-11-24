@@ -7,16 +7,25 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-
+import axios from "axios";
 @Component({})
 export default class ChooseOmyoji extends Vue {
   file: any = null;
   handle(e: any) {
-    console.log(e);
     this.file = e;
   }
   submit() {
-    console.log(this.file);
+    const formData = new FormData();
+    formData.append("file", this.file);
+    formData.append("upload_preset", "nkxb0rzk");
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/onmyojiimage/image/upload`,
+        formData
+      )
+      .then((response) => {
+        console.log(response.data.url);
+      });
   }
 }
 </script>

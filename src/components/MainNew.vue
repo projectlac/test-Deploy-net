@@ -1,9 +1,16 @@
 <template>
   <v-container class="allContent">
     <!-- <HeaderBar :countClick="countClick" /> -->
-    <v-row>
+    <v-progress-linear
+      v-if="loading"
+      indeterminate
+      color="yellow darken-2"
+      height="10"
+      striped
+    ></v-progress-linear>
+    <v-row v-else>
       <Blue :banBlue="banBlue" :pickBlue="pickBlue" :blueOnmy="blueOnmy" />
-      <Effect />
+      <Effect :hiddenMiddle="{ doneBanpick: countClick == 16 }" />
       <v-overlay :value="overlay">
         <p id="countDown">
           <span>
@@ -15,7 +22,7 @@
       </v-overlay>
       <div class="mainContent" :class="{ doneBanpick: countClick == 16 }">
         <div class="choose-shiki" v-if="countClick < 14">
-          <v-row class="justify-center mt-4">
+          <v-row class="justify-center mt-xl-4 mt-lg-0">
             <v-col cols="6">
               <div class="search-wrapper">
                 <v-text-field
@@ -33,13 +40,13 @@
               </div>
             </v-col>
           </v-row>
-          <div class="wrapper pa-4 pl-2" v-if="countClick < 4">
+          <div class="wrapper pa-3" v-if="countClick < 4">
             <v-row>
               <v-col
                 cols="2"
-                class="card px-2"
+                class="card"
                 v-for="post in filteredBanList"
-                :key="'./img/' + post.id"
+                :key="post.id"
               >
                 <div
                   class="border"
@@ -53,15 +60,15 @@
             </v-row>
           </div>
           <div
-            class="wrapper pa-4 pl-2"
+            class="wrapper pa-3"
             v-if="countClick >= 4 && countClick % 2 == 0"
           >
             <v-row>
               <v-col
                 cols="2"
-                class="card px-2"
+                class="card"
                 v-for="post in filteredBanList"
-                :key="'./img/' + post.id"
+                :key="post.id"
               >
                 <div
                   class="border"
@@ -79,15 +86,15 @@
             </v-row>
           </div>
           <div
-            class="wrapper pa-4 pl-2"
+            class="wrapper pa-3"
             v-if="countClick >= 4 && countClick % 2 == 1"
           >
             <v-row>
               <v-col
                 cols="2"
-                class="card px-2"
+                class="card"
                 v-for="post in filteredBanList"
-                :key="'./img/' + post.id"
+                :key="post.id"
               >
                 <div
                   class="border"
@@ -130,7 +137,7 @@ import Effect from "@/components/Effect.vue";
 
 import ChooseOmyoji from "@/components/ChooseOmyoji.vue";
 import { SSR } from "@/store/data";
-// import axios from "axios";
+
 type Data = {
   name: string;
   image: string;
@@ -152,14 +159,15 @@ type Onmy = {
 })
 export default class Main extends Vue {
   banList = SSR;
+  loading: boolean = false;
   keyword: string = "";
   countClick: number = 0;
   overlay: boolean = false;
   textManager: string = "";
-  banBlue: Array<object> = [];
-  banRed: Array<object> = [];
-  pickBlue: Array<object> = [];
-  pickRed: Array<object> = [];
+  banBlue: Array<object> = [{}, {}];
+  banRed: Array<object> = [{}, {}];
+  pickBlue: Array<object> = [{}, {}, {}, {}, {}];
+  pickRed: Array<object> = [{}, {}, {}, {}, {}];
   blueOnmy: any = {};
   redOnmy: any = {};
   icon: string = "";
@@ -179,13 +187,16 @@ export default class Main extends Vue {
   onmyoji: Array<Onmy> = [
     { id: 0, name: "Seimei", pickAction: false, img: "O1skin1.png" },
     { id: 1, name: "Kagura", pickAction: false, img: "O2skin1.png" },
-
     { id: 2, name: "Hiromasa", pickAction: false, img: "O3skin1.png" },
     { id: 3, name: "Yao bikuni", pickAction: false, img: "O4skin1.png" },
   ];
+
+  countBanBlue: number = 0;
+  countBanRed: number = 0;
+  countPickBlue: number = 0;
+  countPickRed: number = 0;
   //////////////////////////////////////////////// THử nghiệm
-  ban1: any = {};
-  ban2: any = {};
+
   ////////////////////////////////////////////////// Kết thúc thử ngiệm
   pick(val: number) {
     this.banList.map((b) => {
@@ -203,9 +214,11 @@ export default class Main extends Vue {
     const shiki = this.item;
     if (this.banList[shiki.id].pickAction && this.countClick < 4) {
       if (this.countClick % 2 == 0) {
-        this.banBlue.push(this.banList[shiki.id]);
+        this.banBlue.splice(this.countBanBlue, 1, this.banList[shiki.id]);
+        this.countBanBlue++;
       } else {
-        this.banRed.push(this.banList[shiki.id]);
+        this.banRed.splice(this.countBanRed, 1, this.banList[shiki.id]);
+        this.countBanRed++;
       }
       this.banList[shiki.id].pickAction = false;
       this.banList[shiki.id].disable = true;
@@ -217,13 +230,17 @@ export default class Main extends Vue {
     ) {
       this.lockText = "Chọn";
       if (this.countClick % 2 == 0) {
-        this.pickBlue.push(this.banList[shiki.id]);
+        // this.pickBlue.push(this.banList[shiki.id]);
+        this.pickBlue.splice(this.countPickBlue, 1, this.banList[shiki.id]);
         this.banList[shiki.id].pickAction = false;
         this.banList[shiki.id].bluePick = true;
+        this.countPickBlue++;
       } else {
-        this.pickRed.push(this.banList[shiki.id]);
+        // this.pickRed.push(this.banList[shiki.id]);
+        this.pickRed.splice(this.countPickRed, 1, this.banList[shiki.id]);
         this.banList[shiki.id].pickAction = false;
         this.banList[shiki.id].redPick = true;
+        this.countPickRed++;
       }
     }
     if (this.countClick >= 14) {
@@ -283,11 +300,20 @@ export default class Main extends Vue {
       return post.name.toLowerCase().includes(this.keyword.toLowerCase());
     });
   }
+
+  // HEADER = {
+  //   "content-type": "application/json",
+  //   "x-hasura-admin-secret":
+  //     "02HINqqOLfSeljv1K8C6XB1qo2QpqdXG4pii6Mm8Il7PmKZjzb38XeEQ5x8ZatfO",
+  // };
+  // URL = "https://steady-flea-20.hasura.app/v1/graphql";
+
   // async getData() {
-  //   const res = await axios.post(
-  //     "https://steady-flea-20.hasura.app/v1/graphql",
-  //     JSON.stringify({
-  //       query: `
+  //   await axios
+  //     .post(
+  //       this.URL,
+  //       JSON.stringify({
+  //         query: `
   //           query MyQuery {
   //           shikigami(order_by: {name: asc}) {
   //             bluePick
@@ -303,20 +329,85 @@ export default class Main extends Vue {
   //         }
 
   //         `,
-  //     }),
-  //     {
-  //       headers: {
-  //         "content-type": "application/json",
-  //         "x-hasura-admin-secret":
-  //           "02HINqqOLfSeljv1K8C6XB1qo2QpqdXG4pii6Mm8Il7PmKZjzb38XeEQ5x8ZatfO",
-  //       },
-  //     }
-  //   );
-  //   // console.log(res.data.data.shikigami);
-  //   this.banList = res.data.data.shikigami;
+  //       }),
+  //       {
+  //         headers: this.HEADER,
+  //       }
+  //     )
+  //     .then((res) => {
+  //       this.loading = false;
+  //       const data = res.data.data.shikigami;
+  //       console.log(data);
+  //     });
   // }
   // created() {
   //   this.getData();
+  // }
+
+  // async resetData() {
+  //   await axios
+  //     .post(
+  //       this.URL,
+  //       JSON.stringify({
+  //         query: `
+  //           mutation {
+  //             update_shikigami(_set: {redPick: false, pickAction: false, disable: false, bluePick: false}, where: {}) {
+  //               returning {
+  //                 id
+  //               }
+  //             }
+  //           }
+  //         `,
+  //       }),
+  //       {
+  //         headers: this.HEADER,
+  //       }
+  //     )
+  //     .then(() => {
+  //       this.getData;
+  //     });
+  // }
+  // async changePickAction(id: number) {
+  //   await axios
+  //     .post(
+  //       this.URL,
+  //       JSON.stringify({
+  //         query: `
+  //           mutation {
+  //             update_shikigami_by_pk(pk_columns: {id:${id}}, _set: {pickAction: true}) {
+  //               pickAction
+  //             }
+  //           }
+  //         `,
+  //       }),
+  //       {
+  //         headers: this.HEADER,
+  //       }
+  //     )
+  //     .then(() => {
+  //       this.getData;
+  //     });
+  // }
+  // async resetPicAction(id: number) {
+  //   await axios
+  //     .post(
+  //       this.URL,
+  //       JSON.stringify({
+  //         query: `
+  //           mutation {
+  //             update_shikigami_by_pk(pk_columns: {id:${id}}, _set: {pickAction: false}) {
+  //               pickAction
+  //             }
+  //           }
+  //         `,
+  //       }),
+  //       {
+  //         headers: this.HEADER,
+  //       }
+  //     )
+  //     .then(() => {
+  //       this.getData;
+  //     });
   // }
 }
 </script>

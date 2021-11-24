@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "cloudinary": "^1.27.1",
+    "cloudinary-vue": "^1.2.3",
     "core-js": "^3.6.5",
     "ts-debounce": "^3.0.0",
     "vue": "^2.6.11",

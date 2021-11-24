@@ -23,7 +23,7 @@ body {
 }
 .allContent {
   margin-top: 75px !important;
-  position: relative;
+  // position: relative;
 }
 #countDown {
   font-size: 125px;
@@ -100,7 +100,7 @@ body {
       }
     }
     p {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       min-height: 37px;
       text-align: center;
@@ -240,7 +240,7 @@ body {
   height: 428px;
   position: fixed;
   bottom: 0;
-  right: -15px;
+  right: -52px;
 }
 .Match {
   margin: 0 auto;
@@ -395,6 +395,10 @@ body {
   right: 0;
   margin: 0 auto;
 }
+.redBG.doneBanpick {
+  opacity: 0;
+  display: none;
+}
 .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state):not(.v-input--is-disabled)
   > .v-input__control
   > .v-input__slot:hover
@@ -532,17 +536,258 @@ body {
 .v-text-field.v-text-field--solo .v-input__append-inner {
   z-index: 2 !important;
 }
+.cloud-left-top {
+  position: absolute;
+  background-image: url("../mây góc trái.png");
+  top: 0;
+  left: 0;
+  height: 195px;
+  width: 340px;
+  background-size: contain;
+}
+.cloud-left-bottom {
+  position: absolute;
+  background-image: url("../mây dưới.png");
+  bottom: 0;
+  left: 0;
+  height: 115px;
+  width: 340px;
+  z-index: 3;
+  background-size: contain;
+}
+.cloud-right-top {
+  position: absolute;
+  background-image: url("../mây góc phải.png");
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 1;
+  width: 370px;
+  background-size: contain;
+}
+.cloud-right-bottom {
+  position: absolute;
+  background-image: url("../mây hông.png");
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  height: 117px;
+  width: 359px;
+  background-size: cover;
+}
+.centerAnimation {
+  height: 500px;
+  width: 700px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.5s linear;
+}
+.centerAnimation.doneBanpick {
+  opacity: 1;
+}
+.fightScene {
+  width: 500px;
+  height: 500px;
+  background: url("../part3_bg2_35a1688.png");
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-animation: spin 25s linear infinite;
+  -moz-animation: spin 25s linear infinite;
+  animation: spin 25s linear infinite;
+}
+.fightScene3 {
+  width: 475px;
+  height: 475px;
+  background: #987843;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.fightScene4 {
+  width: 415px;
+  height: 415px;
+  background: #cfa160;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  opacity: 0;
+  transform: translateY(-50%) scale(1.5);
+  transition-delay: 2s;
+  transition: all 0.2s linear;
+}
+.doneBanpick .fightScene4 {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+.fightScene2 {
+  width: 355px;
+  height: 355px;
+  background: #eee18e;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  opacity: 0;
+  transform: translateY(-50%) scale(1.5);
 
+  transition: all 0.2s linear;
+  transition-delay: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+
+  .fightText {
+    font-family: "MyWebFont";
+    font-size: 150px;
+    color: #8f2d21;
+    text-shadow: 0px 0px 4px #fff;
+  }
+}
+.doneBanpick .fightScene2 {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+.centerAnimation .fightScene2 .fightText {
+  transform: scale(2.5);
+  opacity: 0;
+  transition: 0.2s all linear;
+  transition-delay: 1s;
+}
+.centerAnimation.doneBanpick .fightScene2 .fightText {
+  transform: scale(1.25);
+  opacity: 1;
+}
+.leftArrow {
+  width: 162px;
+  height: 42px;
+  background-image: url("../btn_prev_1284b9f.png");
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(0);
+  -webkit-animation: puzzle 5s linear infinite;
+  -moz-animation: puzzle 5s linear infinite;
+  animation: puzzle 5s linear infinite;
+}
+.rightArrow {
+  width: 162px;
+  height: 42px;
+  background-image: url("../btn_next_7b34fe0.png");
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) translateX(0);
+  -webkit-animation: re-puzzle 5s linear infinite;
+  -moz-animation: re-puzzle 5s linear infinite;
+  animation: re-puzzle 5s linear infinite;
+}
+.fightCloud {
+  background-image: url("../yun4_21eab6c.png");
+  width: 328px;
+  height: 69px;
+  background-size: cover;
+  position: absolute;
+  bottom: 61px;
+  z-index: 3;
+  right: 75px;
+  -webkit-animation: yun2Ani 16s -10s cubic-bezier(0.59, 0.24, 0.58, 1) infinite
+    300ms 0 ease;
+  animation: yun2Ani 16s -10s cubic-bezier(0.59, 0.24, 0.58, 1) infinite 300ms 0
+    ease;
+  -webkit-animation: yun2Ani 16s -10s cubic-bezier(0.59, 0.24, 0.58, 1) infinite;
+  animation: yun2Ani 16s -10s cubic-bezier(0.59, 0.24, 0.58, 1) infinite;
+}
+.flower {
+  width: 113px;
+  z-index: 3;
+  -webkit-filter: drop-shadow(0px 0px 5px rgb(90, 90, 90));
+  filter: drop-shadow(0px 0px 5px rgb(90, 90, 90));
+  height: 113px;
+  background: url("../hua3_e023ca4.png") no-repeat;
+  background-size: 100% auto;
+  position: absolute;
+  top: 0.44rem;
+  left: 50%;
+  margin-left: 8.24rem;
+  -webkit-animation: quan2 4.5s ease-in-out infinite 300ms 0 ease;
+  -moz-animation: quan2 4.5s ease-in-out infinite 300ms 0 ease;
+  -ms-animation: quan2 4.5s ease-in-out infinite 300ms 0 ease;
+  animation: quan2 4.5s ease-in-out infinite 300ms 0 ease;
+  -moz-animation: quan2 4.5s ease-in-out infinite;
+  -webkit-animation: quan2 4.5s ease-in-out infinite;
+  -o-animation: quan2 4.5s ease-in-out infinite;
+  -ms-animation: quan2 4.5s ease-in-out infinite;
+  animation: quan2 4.5s ease-in-out infinite;
+}
+.flower2 {
+  width: 83px;
+  z-index: 3;
+  -webkit-filter: drop-shadow(0px 0px 5px rgb(90, 90, 90));
+  filter: drop-shadow(0px 0px 5px rgb(90, 90, 90));
+  height: 83px;
+  background: url("../hua3_e023ca4.png") no-repeat;
+  background-size: 100% auto;
+  position: absolute;
+  bottom: 50px;
+  left: 2%;
+  margin-left: 8.24rem;
+  -webkit-animation: quan1 4.5s ease-in-out infinite 300ms 0 ease;
+  -moz-animation: quan1 4.5s ease-in-out infinite 300ms 0 ease;
+  -ms-animation: quan1 4.5s ease-in-out infinite 300ms 0 ease;
+  animation: quan1 4.5s ease-in-out infinite 300ms 0 ease;
+  -moz-animation: quan1 4.5s ease-in-out infinite;
+  -webkit-animation: quan1 4.5s ease-in-out infinite;
+  -o-animation: quan1 4.5s ease-in-out infinite;
+  -ms-animation: quan1 4.5s ease-in-out infinite;
+  animation: quan1 4.5s ease-in-out infinite;
+}
 @media (min-width: 1264px) {
   .allContent {
-    position: relative;
+    margin-top: 35px !important;
   }
   .khung-bg {
     background-size: contain;
   }
-  .wrapper .card .border {
-    width: 85px;
-    height: 85px;
+  .wrapper .card {
+    .border {
+      width: 85px;
+      height: 85px;
+    }
   }
   .wrapper .card .hadChoose::before {
     font-size: 28px;
@@ -564,7 +809,7 @@ body {
   .Blue .pickBlue {
     width: 50%;
     padding-top: 18%;
-    padding-left: 13%;
+    padding-left: 0;
   }
   .Blue .borderPickBlue {
     width: 85px;
@@ -580,6 +825,16 @@ body {
     width: 50%;
     padding-top: 18%;
     padding-left: 2%;
+  }
+  .handleFlex-1264 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .handleBlueFlex-1264 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
   .Red .borderPickRed {
     width: 85px;
@@ -614,7 +869,7 @@ body {
     .borderPickBlue {
       width: 85px;
       height: 85px;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
       position: relative;
       .borderPickImg {
         background: url("../khung pick xanh.png");
@@ -653,7 +908,7 @@ body {
     .borderPickRed {
       width: 85px;
       height: 85px;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
       position: relative;
       .borderPickImg {
         background: url("../khung pick do.png");
@@ -684,15 +939,24 @@ body {
   }
 }
 @media (min-width: 1904px) {
+  .wrapper {
+    height: 700px;
+  }
   .allContent {
     position: initial;
+    margin-top: 70px !important;
   }
   // .khung-bg {
   //   background-size: cover;
   // }
-  .wrapper .card .border {
-    width: 135px;
-    height: 135px;
+  .wrapper .card {
+    .border {
+      width: 135px;
+      height: 135px;
+    }
+    p {
+      font-size: 12px;
+    }
   }
   .wrapper .card .hadChoose::before {
     font-size: 28px;
@@ -713,12 +977,12 @@ body {
   .Blue .pickBlue {
     width: 50%;
     padding-top: 3.5%;
-    padding-left: 9%;
+    padding-left: 0;
   }
   .Blue .borderPickBlue {
     width: 135px;
     height: 135px;
-    margin-bottom: 22px;
+    margin-bottom: 25px;
   }
   .Blue .borderPickBlue img {
     width: 100%;
@@ -734,7 +998,7 @@ body {
   .Red .borderPickRed {
     width: 135px;
     height: 135px;
-    margin-bottom: 22px;
+    margin-bottom: 25px;
   }
   .Red .borderPickRed img {
     width: 100%;
@@ -753,7 +1017,7 @@ body {
     .borderBan {
       width: 135px;
       height: 135px;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
       position: relative;
       .borderBanImg {
         background: url("../khung ban xanh.png");
@@ -771,7 +1035,7 @@ body {
     .borderPickBlue {
       width: 135px;
       height: 135px;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
       position: relative;
       .borderPickImg {
         background: url("../khung pick xanh.png");
@@ -792,7 +1056,7 @@ body {
     .borderBan {
       width: 135px;
       height: 135px;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
       position: relative;
       .borderBanImg {
         background: url("../khung ban do.png");
@@ -810,7 +1074,7 @@ body {
     .borderPickRed {
       width: 135px;
       height: 135px;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
       position: relative;
       .borderPickImg {
         background: url("../khung pick do.png");
