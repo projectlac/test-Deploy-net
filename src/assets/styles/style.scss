@@ -16,6 +16,12 @@ body {
   overflow: hidden;
   cursor: url("../meme-pop-cat-pack.png"), auto;
 }
+.v-text-field__slot,
+.popcat,
+.v-input__slot,
+.v-text-field.v-text-field--solo .v-input__control input {
+  cursor: url("../meme-pop-cat-pack-pointer.png"), auto !important;
+}
 ::-webkit-scrollbar {
   display: none !important;
 }

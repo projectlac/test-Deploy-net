@@ -64,7 +64,7 @@
                   dense
                   @click:append="resetKeyword"
                   :append-icon="icon"
-                  class="mt-2 px-3"
+                  class="mt-2 px-3 popcat"
                 ></v-text-field>
               </div>
             </v-col>
