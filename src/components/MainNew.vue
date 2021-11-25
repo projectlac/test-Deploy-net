@@ -195,6 +195,8 @@ export default class Main extends Vue {
   countBanRed: number = 0;
   countPickBlue: number = 0;
   countPickRed: number = 0;
+
+  initUser: string | undefined = "";
   //////////////////////////////////////////////// THử nghiệm
 
   ////////////////////////////////////////////////// Kết thúc thử ngiệm
@@ -258,6 +260,7 @@ export default class Main extends Vue {
       this.countClick++;
     }, 1000);
   }
+
   textManagement() {
     this.toogleTurn = !this.toogleTurn;
 
