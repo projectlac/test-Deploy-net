@@ -22,7 +22,8 @@
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.4.0",
-    "vuex-class": "^0.3.2"
+    "vuex-class": "^0.3.2",
+    "package-name": "git+https://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:x-oauth-basic@github.com/projectlac/test-Deploy-net.git"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",
