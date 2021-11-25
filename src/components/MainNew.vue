@@ -1,14 +1,43 @@
 <template>
   <v-container class="allContent">
     <!-- <HeaderBar :countClick="countClick" /> -->
-    <v-progress-linear
-      v-if="loading"
-      indeterminate
-      color="yellow darken-2"
-      height="10"
-      striped
-    ></v-progress-linear>
-    <v-row v-else>
+    <!-- <v-overlay opacity="0.8" :value="warning">
+      <v-alert
+        color="deep-orange"
+        type="error"
+        class="warning_alert"
+        border="left"
+        width="700px"
+      >
+        <h3 class="text-h5">Thông báo</h3>
+        <div>
+          Việc không chọn Shikigami mà khóa lựa chọn đồng nghĩa với việc bỏ lượt
+          chọn này.
+        </div>
+
+        <v-divider class="my-4 info" style="opacity: 0.22"></v-divider>
+
+        <v-row align="center" no-gutters>
+          <v-col class="grow" cols="7">
+            Bạn có chắc chắn với lựa chọn của mình?
+            <v-checkbox
+              v-model="ex4"
+              label="Không nhắc tôi ở lượt đấu này"
+              color="indigo"
+              hide-details
+            ></v-checkbox>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col class="shrink mr-3">
+            <v-btn color="info" @click="handleYes()"> Đồng ý </v-btn>
+          </v-col>
+          <v-col class="shrink">
+            <v-btn color="green" @click="handleNo()"> Quay lại </v-btn>
+          </v-col>
+        </v-row>
+      </v-alert>
+    </v-overlay> -->
+    <v-row>
       <Blue :banBlue="banBlue" :pickBlue="pickBlue" :blueOnmy="blueOnmy" />
       <Effect :hiddenMiddle="{ doneBanpick: countClick == 16 }" />
       <v-overlay :value="overlay">
@@ -116,13 +145,14 @@
         <ChooseOmyoji v-else @chooseOnmy="chooseOnmy" :data="onmyoji" />
       </div>
       <div class="lol">
-        <button
-          class="lock"
+        <v-btn
+          class="lock text-nomal pt-1"
+          :disabled="disableButtonWhenNotSelectedYet"
           :class="{ doneBanpick: countClick == 16 }"
           @click="lock()"
         >
           {{ lockText }}
-        </button>
+        </v-btn>
       </div>
       <Red :banRed="banRed" :pickRed="pickRed" :redOnmy="redOnmy" />
     </v-row>
@@ -158,8 +188,8 @@ type Onmy = {
   },
 })
 export default class Main extends Vue {
+  disableButtonWhenNotSelectedYet: boolean = true;
   banList = SSR;
-  loading: boolean = false;
   keyword: string = "";
   countClick: number = 0;
   overlay: boolean = false;
@@ -176,12 +206,12 @@ export default class Main extends Vue {
   item: Data = {
     name: "",
     image: "",
-    id: 0,
+    id: -1,
   };
   default: Data = {
     name: "",
     image: "",
-    id: 0,
+    id: -1,
   };
 
   onmyoji: Array<Onmy> = [
@@ -196,10 +226,6 @@ export default class Main extends Vue {
   countPickBlue: number = 0;
   countPickRed: number = 0;
 
-  initUser: string | undefined = "";
-  //////////////////////////////////////////////// THử nghiệm
-
-  ////////////////////////////////////////////////// Kết thúc thử ngiệm
   pick(val: number) {
     this.banList.map((b) => {
       b.pickAction = false;
@@ -210,6 +236,7 @@ export default class Main extends Vue {
     this.item.name = this.banList[val].name;
     this.item.image = this.banList[val].img;
     this.item.id = this.banList[val].id;
+    this.disableButtonWhenNotSelectedYet = false;
   }
 
   lock() {
@@ -224,13 +251,15 @@ export default class Main extends Vue {
       }
       this.banList[shiki.id].pickAction = false;
       this.banList[shiki.id].disable = true;
+      if (this.countClick == 3) {
+        this.lockText = "Chọn";
+      }
     }
     if (
       this.banList[shiki.id].pickAction &&
       this.countClick >= 4 &&
       this.countClick < 14
     ) {
-      this.lockText = "Chọn";
       if (this.countClick % 2 == 0) {
         // this.pickBlue.push(this.banList[shiki.id]);
         this.pickBlue.splice(this.countPickBlue, 1, this.banList[shiki.id]);
@@ -278,6 +307,7 @@ export default class Main extends Vue {
   }
   resetItem() {
     this.item = this.default;
+    this.disableButtonWhenNotSelectedYet = true;
   }
   resetKeyword() {
     this.keyword = "";
@@ -289,6 +319,7 @@ export default class Main extends Vue {
     });
     this.onmyoji[val].pickAction = true;
     this.item.id = val;
+    this.disableButtonWhenNotSelectedYet = false;
   }
   @Watch("keyword")
   wKey() {
@@ -303,114 +334,5 @@ export default class Main extends Vue {
       return post.name.toLowerCase().includes(this.keyword.toLowerCase());
     });
   }
-
-  // HEADER = {
-  //   "content-type": "application/json",
-  //   "x-hasura-admin-secret":
-  //     "02HINqqOLfSeljv1K8C6XB1qo2QpqdXG4pii6Mm8Il7PmKZjzb38XeEQ5x8ZatfO",
-  // };
-  // URL = "https://steady-flea-20.hasura.app/v1/graphql";
-
-  // async getData() {
-  //   await axios
-  //     .post(
-  //       this.URL,
-  //       JSON.stringify({
-  //         query: `
-  //           query MyQuery {
-  //           shikigami(order_by: {name: asc}) {
-  //             bluePick
-  //             disable
-  //             id
-  //             img
-  //             name
-  //             pickAction
-  //             prioritized
-  //             rank
-  //             redPick
-  //           }
-  //         }
-
-  //         `,
-  //       }),
-  //       {
-  //         headers: this.HEADER,
-  //       }
-  //     )
-  //     .then((res) => {
-  //       this.loading = false;
-  //       const data = res.data.data.shikigami;
-  //       console.log(data);
-  //     });
-  // }
-  // created() {
-  //   this.getData();
-  // }
-
-  // async resetData() {
-  //   await axios
-  //     .post(
-  //       this.URL,
-  //       JSON.stringify({
-  //         query: `
-  //           mutation {
-  //             update_shikigami(_set: {redPick: false, pickAction: false, disable: false, bluePick: false}, where: {}) {
-  //               returning {
-  //                 id
-  //               }
-  //             }
-  //           }
-  //         `,
-  //       }),
-  //       {
-  //         headers: this.HEADER,
-  //       }
-  //     )
-  //     .then(() => {
-  //       this.getData;
-  //     });
-  // }
-  // async changePickAction(id: number) {
-  //   await axios
-  //     .post(
-  //       this.URL,
-  //       JSON.stringify({
-  //         query: `
-  //           mutation {
-  //             update_shikigami_by_pk(pk_columns: {id:${id}}, _set: {pickAction: true}) {
-  //               pickAction
-  //             }
-  //           }
-  //         `,
-  //       }),
-  //       {
-  //         headers: this.HEADER,
-  //       }
-  //     )
-  //     .then(() => {
-  //       this.getData;
-  //     });
-  // }
-  // async resetPicAction(id: number) {
-  //   await axios
-  //     .post(
-  //       this.URL,
-  //       JSON.stringify({
-  //         query: `
-  //           mutation {
-  //             update_shikigami_by_pk(pk_columns: {id:${id}}, _set: {pickAction: false}) {
-  //               pickAction
-  //             }
-  //           }
-  //         `,
-  //       }),
-  //       {
-  //         headers: this.HEADER,
-  //       }
-  //     )
-  //     .then(() => {
-  //       this.getData;
-  //     });
-  // }
 }
 </script>
