@@ -17,6 +17,13 @@
       <div class="fightCloud"></div>
       <div class="flower"></div>
       <div class="flower2"></div>
+      <div class="bird">
+        <div class="niao1"></div>
+        <div class="niao2"></div>
+        <div class="niao3"></div>
+        <div class="niao4"></div>
+        <div class="niao5"></div>
+      </div>
     </div>
     <div class="cloud-left-top"></div>
     <div class="cloud-left-bottom"></div>
