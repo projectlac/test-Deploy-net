@@ -19,10 +19,15 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-
+type Onmy = {
+  id: number;
+  name: string;
+  pickAction: boolean;
+  img: string;
+};
 @Component({})
 export default class ChooseOmyoji extends Vue {
-  @Prop() data!: Array<object>;
+  @Prop() data!: Array<Onmy>;
   chooseOnmy(val: number) {
     this.$emit("chooseOnmy", val);
   }

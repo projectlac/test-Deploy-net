@@ -226,59 +226,71 @@ export default class Main extends Vue {
   countPickBlue: number = 0;
   countPickRed: number = 0;
 
+  findIndexById(id: number) {
+    // find item in array by id
+
+    return this.banList.findIndex((x) => x.id === id);
+  }
   pick(val: number) {
     this.banList.map((b) => {
       b.pickAction = false;
     });
+    var index = this.findIndexById(val);
 
-    this.banList[val].pickAction = true;
+    this.banList[index].pickAction = true;
 
-    this.item.name = this.banList[val].name;
-    this.item.image = this.banList[val].img;
-    this.item.id = this.banList[val].id;
+    this.item.name = this.banList[index].name;
+    this.item.image = this.banList[index].img;
+    this.item.id = this.banList[index].id;
     this.disableButtonWhenNotSelectedYet = false;
+
+    console.log(index);
   }
 
   lock() {
     const shiki = this.item;
-    if (this.banList[shiki.id].pickAction && this.countClick < 4) {
-      if (this.countClick % 2 == 0) {
-        this.banBlue.splice(this.countBanBlue, 1, this.banList[shiki.id]);
-        this.countBanBlue++;
-      } else {
-        this.banRed.splice(this.countBanRed, 1, this.banList[shiki.id]);
-        this.countBanRed++;
-      }
-      this.banList[shiki.id].pickAction = false;
-      this.banList[shiki.id].disable = true;
-      if (this.countClick == 3) {
-        this.lockText = "Chọn";
-      }
-    }
-    if (
-      this.banList[shiki.id].pickAction &&
-      this.countClick >= 4 &&
-      this.countClick < 14
-    ) {
-      if (this.countClick % 2 == 0) {
-        // this.pickBlue.push(this.banList[shiki.id]);
-        this.pickBlue.splice(this.countPickBlue, 1, this.banList[shiki.id]);
-        this.banList[shiki.id].pickAction = false;
-        this.banList[shiki.id].bluePick = true;
-        this.countPickBlue++;
-      } else {
-        // this.pickRed.push(this.banList[shiki.id]);
-        this.pickRed.splice(this.countPickRed, 1, this.banList[shiki.id]);
-        this.banList[shiki.id].pickAction = false;
-        this.banList[shiki.id].redPick = true;
-        this.countPickRed++;
-      }
-    }
+
+    var index = this.findIndexById(shiki.id);
+
     if (this.countClick >= 14) {
       if (this.countClick % 2 == 0) {
         this.blueOnmy = this.onmyoji[shiki.id];
       } else {
         this.redOnmy = this.onmyoji[shiki.id];
+      }
+    } else {
+      if (this.banList[index].pickAction && this.countClick < 4) {
+        if (this.countClick % 2 == 0) {
+          this.banBlue.splice(this.countBanBlue, 1, this.banList[index]);
+          this.countBanBlue++;
+        } else {
+          this.banRed.splice(this.countBanRed, 1, this.banList[index]);
+          this.countBanRed++;
+        }
+        this.banList[index].pickAction = false;
+        this.banList[index].disable = true;
+        if (this.countClick == 3) {
+          this.lockText = "Chọn";
+        }
+      }
+      if (
+        this.banList[index].pickAction &&
+        this.countClick >= 4 &&
+        this.countClick < 14
+      ) {
+        if (this.countClick % 2 == 0) {
+          // this.pickBlue.push(this.banList[index]);
+          this.pickBlue.splice(this.countPickBlue, 1, this.banList[index]);
+          this.banList[index].pickAction = false;
+          this.banList[index].bluePick = true;
+          this.countPickBlue++;
+        } else {
+          // this.pickRed.push(this.banList[index]);
+          this.pickRed.splice(this.countPickRed, 1, this.banList[index]);
+          this.banList[index].pickAction = false;
+          this.banList[index].redPick = true;
+          this.countPickRed++;
+        }
       }
     }
 
@@ -317,8 +329,10 @@ export default class Main extends Vue {
     this.onmyoji.map((b) => {
       b.pickAction = false;
     });
+
     this.onmyoji[val].pickAction = true;
     this.item.id = val;
+
     this.disableButtonWhenNotSelectedYet = false;
   }
   @Watch("keyword")
