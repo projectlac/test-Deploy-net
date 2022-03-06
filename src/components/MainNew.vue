@@ -82,7 +82,7 @@
                   :class="{ hadChoose: post.disable, pick: post.pickAction }"
                   @click="pick(post.id)"
                 >
-                  <img :src="post.img" alt="" />
+                  <img :src="'/img/images'+post.img" alt="" />
                 </div>
                 <p>{{ post.name }}</p>
               </v-col>
@@ -108,7 +108,7 @@
                   }"
                   @click="pick(post.id)"
                 >
-                  <img :src="post.img" alt="" />
+                  <img :src="'/img/images'+post.img" alt="" />
                 </div>
                 <p>{{ post.name }}</p>
               </v-col>
@@ -134,7 +134,7 @@
                   }"
                   @click="pick(post.id)"
                 >
-                  <img :src="post.img" alt="" />
+                  <img :src="'/img/images'+post.img" alt="" />
                 </div>
                 <p>{{ post.name }}</p>
               </v-col>

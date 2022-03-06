@@ -5,7 +5,7 @@
         <div class="handleFlex-1264">
           <div class="borderPickRed" v-for="(p, index) in pickRed" :key="index">
             <div class="borderPickImg"></div>
-            <img :src="p.img" alt="" />
+            <img :src="'img/images'+p.img" alt="" />
           </div>
         </div>
       </div>
@@ -13,7 +13,7 @@
         <div class="handleFlex-1264">
           <div class="borderBan" v-for="(b, index) in banRed" :key="index">
             <div class="borderBanImg"></div>
-            <img :src="b.img" alt="" />
+            <img :src="'img/images'+b.img" alt="" />
           </div>
         </div>
       </div>
